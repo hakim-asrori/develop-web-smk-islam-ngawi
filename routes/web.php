@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [LandingController::class, 'index']);
+Route::get('/blog', [LandingController::class, 'blog']);
+Route::get('/laravel-version', function () {
     return view('welcome');
 });
+
+includeRouteFiles(__DIR__ . "/web");

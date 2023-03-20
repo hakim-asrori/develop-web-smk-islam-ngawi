@@ -47,10 +47,10 @@ return [
     'distinct' => ':attribute memiliki nilai yang duplikat.',
     'doesnt_end_with' => 'The :attribute field must not end with one of the following: :values.',
     'doesnt_start_with' => 'The :attribute field must not start with one of the following: :values.',
-    'email' => ':attribute harus berupa alamat email yang valid.',
+    'email' => 'harap masukan alamat email yang valid.',
     'ends_with' => ':attribute harus diakhiri salah satu dari berikut: :values',
     'enum' => 'The selected :attribute is invalid.',
-    'exists' => ':attribute yang dipilih tidak valid.',
+    'exists' => ':attribute tidak terdaftar.',
     'file' => ':attribute harus berupa sebuah berkas.',
     'filled' => ':attribute harus memiliki nilai.',
     'gt' => [
