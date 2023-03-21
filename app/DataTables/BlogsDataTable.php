@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Blog;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -22,8 +23,31 @@ class BlogsDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'blogs.action')
-            ->setRowId('id');
+            ->addColumn('aksi',  function (Blog $blog) {
+                $buttons = "";
+                $buttons .= '<a href="' . route('web.blog.edit', ['blog' => $blog->id]) . '" class="btn btn-warning btn-sm text-white me-2">Edit</a>';
+                $buttons .= '<button class="btn btn-danger btn-sm" id="hapus" data-url="' . route('web.blog.destroy', $blog->id) . '">Hapus</button>';
+                return $buttons;
+            })
+            ->addColumn('judul',  function (Blog $blog) {
+                return $blog->title;
+            })
+            ->addColumn('author',  function (Blog $blog) {
+                return $blog->user->name;
+            })
+            ->addColumn('status', function (Blog $blog) {
+                $status = '<input type="checkbox" id="status" data-id="' . $blog->id . '" data-switch="bool" /><label for="status" data-on-label="On" data-off-label="Off"></label>';
+                if ($blog->status == Blog::ACTIVE) {
+                    $status = '<input type="checkbox" id="status" data-id="' . $blog->id . '" checked data-switch="bool" /><label for="status" data-on-label="On" data-off-label="Off"></label>';
+                }
+
+                return $status;
+            })
+            ->addColumn('dibuat_pada', function (Blog $blog) {
+                return Carbon::createFromFormat("Y-m-d H:i:s", $blog->created_at)->isoFormat("D MMMM Y");
+            })
+            ->setRowId('id')
+            ->rawColumns(['status', 'aksi']);
     }
 
     /**
@@ -62,16 +86,13 @@ class BlogsDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
+            Column::computed('aksi')
                 ->exportable(false)
-                ->printable(false)
-                ->width(60)
-                ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('title'),
-            Column::make('status'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+                ->printable(false),
+            Column::computed('judul'),
+            Column::computed('author'),
+            Column::computed('status'),
+            Column::computed('dibuat_pada'),
         ];
     }
 

@@ -2,10 +2,45 @@
 
 namespace App\Models;
 
+use App\Http\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Blog extends Model
 {
-    use HasFactory;
+    use HasFactory, Uuid;
+
+    const ACTIVE = 1;
+
+    const INACTIVE = 0;
+
+    protected $fillable = [
+        'title',
+        'content',
+        'status',
+        'user_id',
+    ];
+
+    protected $hidden = [
+        'id',
+        'user_id',
+    ];
+
+    public function document(): MorphOne
+    {
+        return $this->morphOne(Document::class, 'documentable');
+    }
+
+    public function documents(): MorphMany
+    {
+        return $this->morphMany(Document::class, 'documentable');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

@@ -12,11 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('documents', function (Blueprint $table) {
-            $table->id();
-            $table->morphs('documentable');
+            $table->uuid('id');
+            $table->string('documentable_id');
+            $table->string('documentable_type');
             $table->string('document_path');
             $table->string('document_name');
-            $table->enum('is_thumbnail', [0, 1])->default(0);
+            $table->integer('is_thumbnail')->default(0);
             $table->timestamps();
         });
     }

@@ -27,11 +27,11 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="card">
-                            @csrf
                             <div class="card-body">
                                 <div class="mb-3">
                                     <label for="title">Judul Konten</label>
-                                    <input type="text" id="title" name="title" value="{{ old('title') }}"
+                                    <input type="text" id="title" name="title"
+                                        value="{{ old('title') ? old('title') : $blog->title }}"
                                         class="form-control @error('title') is-invalid @enderror">
                                     @error('title')
                                         <span class="invalid-feedback" role="alert">
@@ -41,8 +41,8 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="email">Isi Konten</label>
-                                    <div id="snow-editor" style="height: 300px;" onkeyup="sendToTextarea()">Konten yang
-                                        ingin dibuat</div>
+                                    <div id="snow-editor" style="height: 300px;" onkeyup="sendToTextarea()">
+                                        {!! $blog->content !!}</div>
                                     <textarea name="content" hidden></textarea>
                                 </div>
                             </div>
@@ -61,10 +61,54 @@
                                             {{ $message }}
                                         </span>
                                     @enderror
+                                    @if ($blog->document)
+                                        <div class="card mt-1 mb-0 shadow-none border">
+                                            <div class="p-2">
+                                                <div class="row align-items-center">
+                                                    <div class="col-auto">
+                                                        <img data-dz-thumbnail
+                                                            src="{{ url('storage/' . $blog->document->document_path) }}"
+                                                            class="avatar-sm rounded bg-light" alt="">
+                                                    </div>
+                                                    <div class="col ps-0">
+                                                        <a href="javascript:void(0);" class="text-muted fw-bold"
+                                                            data-dz-name>{{ $blog->document->document_name }}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="mb-3">
                                     <label>Upload Galeri</label>
                                     <input type="file" multiple name="galleries[]" class="form-control">
+                                    @if ($blog->documents)
+                                        @foreach ($blog->documents as $document)
+                                            @if (!$document->is_thumbnail)
+                                                <div class="card mt-1 mb-0 shadow-none border">
+                                                    <div class="p-2">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-auto">
+                                                                <img data-dz-thumbnail
+                                                                    src="{{ url('storage/' . $document->document_path) }}"
+                                                                    class="avatar-sm rounded bg-light" alt="">
+                                                            </div>
+                                                            <div class="col ps-0">
+                                                                <a href="javascript:void(0);" class="text-muted fw-bold"
+                                                                    data-dz-name>{{ $document->document_name }}</a>
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                <a href="{{ route('web.blog.delete.document', [$document->id, $blog->id]) }}"
+                                                                    class="btn btn-link btn-lg text-muted" data-dz-remove>
+                                                                    &times;
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
                             <div class="card-footer d-flex justify-content-between">
@@ -130,4 +174,7 @@
             $("textarea").html(quill.root.innerHTML)
         }
     </script>
+    @if (session('message'))
+        {!! session('message') !!}
+    @endif
 @endpush
