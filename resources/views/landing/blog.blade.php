@@ -1,3 +1,7 @@
+@php
+    use Carbon\Carbon;
+    use Illuminate\Support\Str;
+@endphp
 @extends('landing.layout')
 
 @section('content')
@@ -6,7 +10,7 @@
             <div class="container">
                 <ol>
                     <li>
-                        <a href="https://rtqulilalbab.com">Home</a>
+                        <a href="{{ url('/') }}">Home</a>
                     </li>
                     <li>Blog</li>
                 </ol>
@@ -17,42 +21,41 @@
             <div class="container" data-aos="fade-up">
                 <div class="row">
                     <div class="col-lg-8">
+                        @foreach ($blogs as $blog)
+                            <article class="entry">
 
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="https://rtqulilalbab.com/storage/foto/GusS6ljhsfMffrp2MR2b8gMNU64Nh6Z244pJm8WW.jpg"
-                                        class="card-img-top py-2 px-5" alt="Rtq Griya Mucasim UlilAlbab">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-uppercase"><b>Rtq Griya Mucasim UlilAlbab</b></h5>
-                                        <div class="entry-meta">
-                                            <ul>
-                                                <li class="d-flex align-items-center">
-                                                    <i class="bi bi-person"></i> &nbsp;
-                                                    <a>
-                                                        Syekh Luqman Hakim
-                                                    </a>
-                                                </li>
-                                                <li class="d-flex align-items-center">
-                                                    <i class="bi bi-clock"></i> &nbsp;
-                                                    <a>
-                                                        Selasa, 25 Oktober 2022
-                                                    </a>
-                                                </li>
-                                                <li class="d-flex align-items-center">
-                                                    <i class="bi bi-tags"></i> &nbsp;
-                                                    <a>
-                                                        Diskusi
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <a href="https://rtqulilalbab.com/rtq-griya-mucasim-ulilalbab"
-                                            class="btn btn-primary">Selanjutnya</a>
+                                <div class="entry-img">
+                                    <img src="{{ asset('storage/' . $blog->document->document_path) }}"
+                                        alt="{{ $blog->title }}" class="img-fluid">
+                                </div>
+
+                                <h2 class="entry-title">
+                                    <a href="{{ url('blog/' . $blog->slug) }}">{{ $blog->title }}</a>
+                                </h2>
+
+                                <div class="entry-meta">
+                                    <ul>
+                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
+                                                href="#">{{ $blog->user->name }}</a></li>
+                                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
+                                                href="#"><time
+                                                    datetime="{{ $blog->created_at }}">{{ Carbon::createFromFormat('Y-m-d H:i:s', $blog->created_at)->isoFormat('dddd, D MMMM Y') }}</time></a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="entry-content">
+                                    <p>
+                                        {{ Str::limit(strip_tags($blog->content), 200, '...') }}
+                                    </p>
+                                    <div class="read-more">
+                                        <a href="{{ url('blog/' . $blog->slug) }}">Selengkapnya</a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+
+                            </article>
+                        @endforeach
+                        {{ $blogs->links() }}
                     </div>
 
                     <div class="col-lg-4">
@@ -61,44 +64,29 @@
 
                             <h3 class="sidebar-title">Cari</h3>
                             <div class="sidebar-item search-form">
-                                <form action="">
-                                    <input type="text">
+                                <form action="" method="get">
+                                    <input type="text" name="search" value="{{ request('search') }}">
                                     <button type="submit"><i class="bi bi-search"></i></button>
                                 </form>
                             </div>
 
-                            <h3 class="sidebar-title">Kategori</h3>
-                            <div class="sidebar-item categories">
-                                <ul>
-                                    <li>
-                                        <a href="https://rtqulilalbab.com/diskusi"> Diskusi
-                                            <span>(2)</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-
                             <h3 class="sidebar-title">Post Terbaru</h3>
                             <div class="sidebar-item recent-posts">
-                                <div class="post-item clearfix">
-                                    <img src="https://rtqulilalbab.com/storage/foto/GusS6ljhsfMffrp2MR2b8gMNU64Nh6Z244pJm8WW.jpg"
-                                        alt="Rtq Griya Mucasim UlilAlbab" height="50" width="50">
-                                    <h4 class="text-capitalize"><a
-                                            href="https://rtqulilalbab.com/rtq-griya-mucasim-ulilalbab">Rtq Griya Mucasim
-                                            UlilAlbab</a>
-                                    </h4>
-                                    <time datetime="2022-10-25 11:48:52">Okt 25, 2022</time>
-                                </div>
-                                <div class="post-item clearfix">
-                                    <img src="https://rtqulilalbab.com/storage/foto/gKgCOMvrzmJK9jBPX43ahhNZMi0IPKIWG4fN5E1p.jpg"
-                                        alt="ggg" height="50" width="50">
-                                    <h4 class="text-capitalize"><a href="https://rtqulilalbab.com/ggg">ggg</a>
-                                    </h4>
-                                    <time datetime="2022-09-20 12:35:24">Sep 20, 2022</time>
-                                </div>
+                                @foreach ($newBlogs as $blog)
+                                    <div class="post-item clearfix">
+                                        <img src="{{ asset('storage/' . $blog->document->document_path) }}"
+                                            alt="{{ $blog->title }}" height="50" width="50">
+                                        <h4 class="text-capitalize"><a
+                                                href="{{ url('blog/' . $blog->slug) }}">{{ $blog->title }}</a>
+                                        </h4>
+                                        <time
+                                            datetime="{{ $blog->created_at }}">{{ Carbon::createFromFormat('Y-m-d H:i:s', $blog->created_at)->isoFormat('dddd, D MMMM Y') }}</time>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             </div>

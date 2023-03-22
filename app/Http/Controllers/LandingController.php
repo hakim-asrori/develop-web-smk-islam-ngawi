@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
+use App\Models\Document;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
@@ -11,8 +13,40 @@ class LandingController extends Controller
         return view('landing.index');
     }
 
-    public function blog()
+    public function blog(Request $request)
     {
-        return view('landing.blog');
+        $data = [
+            "blogs" => Blog::inRandomOrder()->paginate(4),
+            "newBlogs" => Blog::limit(5)->latest()->get()
+        ];
+
+        if ($request->search) {
+            $data["blogs"] = Blog::where("title", "like", "%" . $this->antiInject($request->search) . "%")->orWhere("content", "like", "%" . $this->antiInject($request->search) . "%")->inRandomOrder()->paginate(4);
+        }
+
+        return view('landing.blog', $data);
+    }
+
+    public function blogDetail($slug)
+    {
+        $data = [
+            "blog" => Blog::where('slug', $slug)->first()
+        ];
+
+        return view('landing.blog-detail', $data);
+    }
+
+    public function gallery()
+    {
+        $data = [
+            "galleries" => Document::paginate()
+        ];
+
+        return view('landing.gallery', $data);
+    }
+
+    protected function antiInject($string)
+    {
+        return stripslashes(strip_tags(htmlentities(htmlspecialchars($string, ENT_QUOTES))));
     }
 }

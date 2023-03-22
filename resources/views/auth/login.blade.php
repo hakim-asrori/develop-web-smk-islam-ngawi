@@ -8,10 +8,10 @@
 
                     <div class="auth-brand text-center text-lg-start">
                         <a href="index.html" class="logo-dark">
-                            <span><img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="18"></span>
+                            <span><img src="{{ asset('images/logo.png') }}" alt="" height="80"></span>
                         </a>
                         <a href="index.html" class="logo-light">
-                            <span><img src="{{ asset('assets/images/logo.png') }}" alt="" height="18"></span>
+                            <span><img src="{{ asset('images/logo.png') }}" alt="" height="80"></span>
                         </a>
                     </div>
 
@@ -56,12 +56,9 @@
 
         <div class="auth-fluid-right text-center">
             <div class="auth-user-testimonial">
-                <h2 class="mb-3">I love the color!</h2>
-                <p class="lead"><i class="mdi mdi-format-quote-open"></i> It's a elegent templete. I love it very
-                    much! . <i class="mdi mdi-format-quote-close"></i>
-                </p>
-                <p>
-                    - Hyper Admin User
+                <h2 class="mb-3">SMK AL-ISLAM</h2>
+                <p class="lead"><i class="mdi mdi-format-quote-open"></i> Kompetensi Keahlian : FARMASI . <i
+                        class="mdi mdi-format-quote-close"></i>
                 </p>
             </div>
         </div>

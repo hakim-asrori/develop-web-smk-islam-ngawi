@@ -63,7 +63,7 @@ class BlogController extends Controller
         return DB::transaction(function () use ($request) {
             $request->merge([
                 'user_id' => Auth::user()->id,
-                'id' => Str::uuid()
+                'slug' => Str::slug($request->title)
             ]);
 
             $blog = $this->model->create($request->all());
@@ -113,6 +113,10 @@ class BlogController extends Controller
     public function update(Request $request, Blog $blog)
     {
         return DB::transaction(function () use ($request, $blog) {
+            $request->merge([
+                'slug' => Str::slug($request->title)
+            ]);
+
             if ($request->hasFile('thumbnail')) {
                 if ($blog->document && $blog->document->is_thumbnail) {
                     Storage::delete($blog->document->document_path);
