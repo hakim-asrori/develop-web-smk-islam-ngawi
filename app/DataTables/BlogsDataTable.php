@@ -36,9 +36,10 @@ class BlogsDataTable extends DataTable
                 return $blog->user->name;
             })
             ->addColumn('status', function (Blog $blog) {
-                $status = '<input type="checkbox" id="status" data-id="' . $blog->id . '" data-switch="bool" /><label for="status" data-on-label="On" data-off-label="Off"></label>';
+                $status = '<input type="checkbox" id="status-' . $blog->id . '" data-id="' . $blog->id . '" data-switch="bool" /><label for="status-' . $blog->id . '" data-on-label="On" data-off-label="Off" ></label>';
+
                 if ($blog->status == Blog::ACTIVE) {
-                    $status = '<input type="checkbox" id="status" data-id="' . $blog->id . '" checked data-switch="bool" /><label for="status" data-on-label="On" data-off-label="Off"></label>';
+                    $status = '<input type="checkbox" id="status-' . $blog->id . '" data-id="' . $blog->id . '" checked data-switch="bool" /><label for="status-' . $blog->id . '" data-on-label="On" data-off-label="Off" ></label>';
                 }
 
                 return $status;

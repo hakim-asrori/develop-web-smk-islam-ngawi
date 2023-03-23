@@ -34,7 +34,7 @@
         {!! session('message') !!}
     @endif
     <script>
-        $("body").on('click', "#status", function() {
+        $("body").on("click", "input[type='checkbox']", function() {
             $.ajax({
                 url: '{{ url('app/blog/update-status') }}/' + $(this).data('id'),
                 type: "post",

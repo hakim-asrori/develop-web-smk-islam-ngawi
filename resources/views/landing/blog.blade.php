@@ -20,43 +20,51 @@
         <section id="blog" class="blog">
             <div class="container" data-aos="fade-up">
                 <div class="row">
-                    <div class="col-lg-8">
-                        @foreach ($blogs as $blog)
-                            <article class="entry">
+                    @if ($blogs->count() < 1)
+                        <div class="col-lg-8">
+                            <div class="alert alert-info text-center shadow">
+                                Data tidak ditemukan atau belum ada data terbaru
+                            </div>
+                        </div>
+                    @else
+                        <div class="col-lg-8">
+                            @foreach ($blogs as $blog)
+                                <article class="entry">
 
-                                <div class="entry-img">
-                                    <img src="{{ asset('storage/' . $blog->document->document_path) }}"
-                                        alt="{{ $blog->title }}" class="img-fluid">
-                                </div>
-
-                                <h2 class="entry-title">
-                                    <a href="{{ url('blog/' . $blog->slug) }}">{{ $blog->title }}</a>
-                                </h2>
-
-                                <div class="entry-meta">
-                                    <ul>
-                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                                href="#">{{ $blog->user->name }}</a></li>
-                                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
-                                                href="#"><time
-                                                    datetime="{{ $blog->created_at }}">{{ Carbon::createFromFormat('Y-m-d H:i:s', $blog->created_at)->isoFormat('dddd, D MMMM Y') }}</time></a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="entry-content">
-                                    <p>
-                                        {{ Str::limit(strip_tags($blog->content), 200, '...') }}
-                                    </p>
-                                    <div class="read-more">
-                                        <a href="{{ url('blog/' . $blog->slug) }}">Selengkapnya</a>
+                                    <div class="entry-img">
+                                        <img src="{{ asset('storage/' . $blog->document->document_path) }}"
+                                            alt="{{ $blog->title }}" class="img-fluid">
                                     </div>
-                                </div>
 
-                            </article>
-                        @endforeach
-                        {{ $blogs->links() }}
-                    </div>
+                                    <h2 class="entry-title">
+                                        <a href="{{ url('blog/' . $blog->slug) }}">{{ $blog->title }}</a>
+                                    </h2>
+
+                                    <div class="entry-meta">
+                                        <ul>
+                                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
+                                                    href="#">{{ $blog->user->name }}</a></li>
+                                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
+                                                    href="#"><time
+                                                        datetime="{{ $blog->created_at }}">{{ Carbon::createFromFormat('Y-m-d H:i:s', $blog->created_at)->isoFormat('dddd, D MMMM Y') }}</time></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="entry-content">
+                                        <p>
+                                            {{ Str::limit(strip_tags($blog->content), 200, '...') }}
+                                        </p>
+                                        <div class="read-more">
+                                            <a href="{{ url('blog/' . $blog->slug) }}">Selengkapnya</a>
+                                        </div>
+                                    </div>
+
+                                </article>
+                            @endforeach
+                            {{ $blogs->links() }}
+                        </div>
+                    @endif
 
                     <div class="col-lg-4">
 

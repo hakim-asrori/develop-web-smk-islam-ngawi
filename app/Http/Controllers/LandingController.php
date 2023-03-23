@@ -16,12 +16,12 @@ class LandingController extends Controller
     public function blog(Request $request)
     {
         $data = [
-            "blogs" => Blog::inRandomOrder()->paginate(4),
-            "newBlogs" => Blog::limit(5)->latest()->get()
+            "blogs" => Blog::where('status', Blog::ACTIVE)->inRandomOrder()->paginate(4),
+            "newBlogs" => Blog::where('status', Blog::ACTIVE)->limit(5)->latest()->get()
         ];
 
         if ($request->search) {
-            $data["blogs"] = Blog::where("title", "like", "%" . $this->antiInject($request->search) . "%")->orWhere("content", "like", "%" . $this->antiInject($request->search) . "%")->inRandomOrder()->paginate(4);
+            $data["blogs"] = Blog::where('status', Blog::ACTIVE)->where("title", "like", "%" . $this->antiInject($request->search) . "%")->orWhere("content", "like", "%" . $this->antiInject($request->search) . "%")->inRandomOrder()->paginate(4);
         }
 
         return view('landing.blog', $data);
@@ -29,17 +29,19 @@ class LandingController extends Controller
 
     public function blogDetail($slug)
     {
-        $data = [
-            "blog" => Blog::where('slug', $slug)->first()
-        ];
+        $blog = Blog::where('slug', $slug)->first();
 
-        return view('landing.blog-detail', $data);
+        if (!$blog) {
+            abort(404);
+        }
+
+        return view('landing.blog-detail', compact('blog'));
     }
 
     public function gallery()
     {
         $data = [
-            "galleries" => Document::paginate()
+            "galleries" => Document::paginate(9)
         ];
 
         return view('landing.gallery', $data);
