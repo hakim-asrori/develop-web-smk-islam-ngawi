@@ -24,7 +24,7 @@
                     <p>Galeri</p>
                 </header>
 
-                @if ($galleries->count() > 1)
+                @if ($galleries->count() < 0)
                     <div class="alert alert-info text-center">belum ada data terbaru</div>
                 @else
                     <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
