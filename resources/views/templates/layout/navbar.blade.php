@@ -30,6 +30,6 @@
 
     </ul>
     <button class="button-menu-mobile open-left">
-        <i class="mdi mdi-menu"></i>
+        <i class="uil-arrow-left"></i>
     </button>
 </div>

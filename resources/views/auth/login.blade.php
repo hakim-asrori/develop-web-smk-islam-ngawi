@@ -47,7 +47,7 @@
                     </form>
 
                     <footer class="footer footer-alt">
-                        <p class="text-muted">&copy; copyright {{ date('Y') }}</p>
+                        <p class="text-muted"> &copy; Copyright <strong><span>SMK Al-Islam Ngawi</span></strong>.</p>
                     </footer>
 
                 </div>
