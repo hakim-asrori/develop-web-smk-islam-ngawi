@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,7 @@ Route::get('/', [LandingController::class, 'index'])->name('web.home');
 Route::get('/blog', [LandingController::class, 'blog'])->name('web.blog');
 Route::get('/blog/{slug}', [LandingController::class, 'blogDetail'])->name('web.blog.detail');
 Route::get('/gallery', [LandingController::class, 'gallery'])->name('web.gallery');
+Route::post('/contact', [ContactController::class, 'store'])->name('web.contact.store');
 Route::get('/laravel-version', function () {
     return view('welcome');
 });

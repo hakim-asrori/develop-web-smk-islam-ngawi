@@ -31,11 +31,16 @@ class LandingController extends Controller
     {
         $blog = Blog::where('slug', $slug)->first();
 
+        $data = [
+            "blog" => $blog,
+            "newBlogs" => Blog::where('status', Blog::ACTIVE)->limit(5)->latest()->get()
+        ];
+
         if (!$blog) {
             abort(404);
         }
 
-        return view('landing.blog-detail', compact('blog'));
+        return view('landing.blog-detail', $data);
     }
 
     public function gallery()

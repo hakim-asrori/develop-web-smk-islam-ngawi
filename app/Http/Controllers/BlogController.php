@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\BlogsDataTable;
 use App\Http\Requests\Blog\CreateBlogRequest;
+use App\Http\Requests\Blog\UpdateBlogRequest;
 use App\Http\Traits\UploadDocument;
 use App\Models\Blog;
 use App\Models\Document;
@@ -24,7 +24,7 @@ class BlogController extends Controller
         $this->model = $model;
     }
 
-    public function index(BlogsDataTable $blogsDataTable)
+    public function index()
     {
         $data = [
             "title" => "Blog",
@@ -34,9 +34,10 @@ class BlogController extends Controller
                     "url" => route('web.app.index')
                 ]),
             ]),
+            "blogs" => $this->model->all()
         ];
 
-        return $blogsDataTable->render('app.blog.index', $data);
+        return view('app.blog.index', $data);
     }
 
     public function create()
@@ -110,7 +111,7 @@ class BlogController extends Controller
         return view('app.blog.edit', $data);
     }
 
-    public function update(Request $request, Blog $blog)
+    public function update(UpdateBlogRequest $request, Blog $blog)
     {
         return DB::transaction(function () use ($request, $blog) {
             $request->merge([

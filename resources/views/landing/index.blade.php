@@ -340,15 +340,15 @@
                             <div class="col-md-6">
                                 <div class="info-box">
                                     <i class="bi bi-envelope"></i>
-                                    <h3>Email Us</h3>
+                                    <h3>Email Kami</h3>
                                     <p>info@example.com<br>contact@example.com</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="info-box">
                                     <i class="bi bi-clock"></i>
-                                    <h3>Open Hours</h3>
-                                    <p>Monday - Friday<br>9:00AM - 05:00PM</p>
+                                    <h3>Jam Buka</h3>
+                                    <p>Senin - Jum'at<br>08.00 Pagi - 16:00 Sore</p>
                                 </div>
                             </div>
                         </div>
@@ -356,34 +356,35 @@
                     </div>
 
                     <div class="col-lg-6">
-                        <form action="forms/contact.php" method="post" class="php-email-form">
+                        <form action="{{ route('web.contact.store') }}" method="post" class="php-email-form">
+                            @csrf
                             <div class="row gy-4">
 
                                 <div class="col-md-6">
-                                    <input type="text" name="name" class="form-control" placeholder="Your Name"
+                                    <input type="text" name="name" class="form-control" placeholder="nama anda"
                                         required>
                                 </div>
 
                                 <div class="col-md-6 ">
-                                    <input type="email" class="form-control" name="email" placeholder="Your Email"
+                                    <input type="email" class="form-control" name="email" placeholder="email anda"
                                         required>
                                 </div>
 
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control" name="subject" placeholder="Subject"
+                                    <input type="text" class="form-control" name="subject" placeholder="subjek"
                                         required>
                                 </div>
 
                                 <div class="col-md-12">
-                                    <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                                    <textarea class="form-control" name="message" rows="6" placeholder="pesan" required></textarea>
                                 </div>
 
                                 <div class="col-md-12 text-center">
                                     <div class="loading">Loading</div>
                                     <div class="error-message"></div>
-                                    <div class="sent-message">Your message has been sent. Thank you!</div>
+                                    <div class="sent-message">Pesan anda berhasil terkirim. Terima kasih!</div>
 
-                                    <button type="submit">Send Message</button>
+                                    <button type="submit">Kirim Pesan</button>
                                 </div>
 
                             </div>

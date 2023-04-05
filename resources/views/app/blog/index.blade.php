@@ -1,3 +1,6 @@
+@php
+    use Carbon\Carbon;
+@endphp
 @extends('templates.app')
 
 @section('content-app')
@@ -20,7 +23,49 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        {{ $dataTable->table() }}
+                        <table class="table table-hover table-bordered" id="blogTable">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Judul</th>
+                                    <th>Penulis</th>
+                                    <th>Status</th>
+                                    <th>Tanggal Dibuat</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($blogs as $blog)
+                                    <tr>
+                                        <th>{{ $loop->iteration }}</th>
+                                        <td>{{ $blog->title }}</td>
+                                        <td>{{ $blog->user->name }}</td>
+                                        <td>
+                                            @if ($blog->status)
+                                                <input type="checkbox" id="status-{{ $blog->id }}"
+                                                    data-id="{{ $blog->id }}" checked data-switch="bool" /><label
+                                                    for="status-{{ $blog->id }}" data-on-label="On"
+                                                    data-off-label="Off"></label>
+                                            @else
+                                                <input type="checkbox" id="status-{{ $blog->id }}"
+                                                    data-id="{{ $blog->id }}" data-switch="bool" /><label
+                                                    for="status-{{ $blog->id }}" data-on-label="On"
+                                                    data-off-label="Off"></label>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{ Carbon::createFromFormat('Y-m-d H:i:s', $blog->created_at)->isoFormat('D MMMM Y') }}
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('web.blog.edit', $blog->id) }}"
+                                                class="btn btn-warning btn-sm text-white me-2">Edit</a>
+                                            <button class="btn btn-danger btn-sm" id="hapus"
+                                                data-url="{{ route('web.blog.destroy', $blog->id) }}">Hapus</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -29,7 +74,6 @@
 @endsection
 
 @push('js')
-    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
     @if (session('message'))
         {!! session('message') !!}
     @endif

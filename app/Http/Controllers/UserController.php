@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\UsersDataTable;
 use App\Http\Requests\User\CreateUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
@@ -24,7 +23,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(UsersDataTable $usersDataTable)
+    public function index()
     {
         $data = [
             "title" => "Pengguna",
@@ -34,9 +33,10 @@ class UserController extends Controller
                     "url" => route('web.app.index')
                 ]),
             ]),
+            "users" => $this->model->all()
         ];
 
-        return $usersDataTable->render('app.user.index', $data);
+        return view('app.user.index', $data);
     }
 
     /**

@@ -49,6 +49,12 @@
                     <span> Galeri </span>
                 </a>
             </li>
+            <li class="side-nav-item">
+                <a href="{{ route('web.contact.index') }}" class="side-nav-link">
+                    <i class="mdi mdi-contacts"></i>
+                    <span> Kontak </span>
+                </a>
+            </li>
         </ul>
 
         <div class="clearfix"></div>

@@ -6,40 +6,37 @@
             <div class="page-title-box">
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        @foreach ($menus as $menu)
-                            <li class="breadcrumb-item"><a href="{{ $menu['url'] }}">{{ $menu['title'] }}</a></li>
-                        @endforeach
                         <li class="breadcrumb-item active">{{ $title }}</li>
                     </ol>
                 </div>
-                <h4 class="page-title">{{ $title }} &nbsp;&nbsp; <a href="{{ route('web.user.create') }}"
-                        class="btn btn-primary btn-sm">Tambah</a>
-                </h4>
+                <h4 class="page-title">{{ $title }}</h4>
             </div>
 
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-bordered" id="userTable">
+                        <table class="table table-bordered table-hover" id="contactTable">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Lengkap</th>
-                                    <th>Email</th>
+                                    <th>Nama Pengirim</th>
+                                    <th>Email Pengirim</th>
+                                    <th>Subjek Pengirim</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
-                                    <tr>
+                                @foreach ($contacts as $contact)
+                                    <tr class="{{ $contact->status ? '' : 'table-success' }}">
                                         <th>{{ $loop->iteration }}</th>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $contact->name }}</td>
+                                        <td>{{ $contact->email }}</td>
+                                        <td>{{ $contact->subject }}</td>
                                         <td>
-                                            <a href="{{ route('web.user.edit', $user->id) }}"
-                                                class="btn btn-warning btn-sm text-white me-2">Edit</a>
+                                            <a href="{{ route('web.contact.show', $contact->id) }}"
+                                                class="btn btn-sm btn-info">Detail</a>
                                             <button class="btn btn-danger btn-sm" id="hapus"
-                                                data-url="{{ route('web.user.destroy', $user->id) }}">Hapus</button>
+                                                data-url="{{ route('web.contact.destroy', $contact->id) }}">Hapus</button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -53,12 +50,8 @@
 @endsection
 
 @push('js')
-    @if (session('message'))
-        {!! session('message') !!}
-    @endif
-
     <script>
-        $("#userTable").dataTable()
+        $("#contactTable").dataTable()
 
         $("body").on("click", "#hapus", function() {
             Swal.fire({

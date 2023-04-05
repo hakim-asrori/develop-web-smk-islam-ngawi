@@ -40,9 +40,12 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto" href="/">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#about">Profil</a></li>
+                    <li><a class="nav-link scrollto" href="/#about">Profil</a></li>
+                    <li><a class="nav-link scrollto" href="/#features">Fasilitas</a></li>
                     <li><a href="/blog">Blog</a></li>
                     <li><a class="nav-link scrollto" href="/gallery">Galeri</a></li>
+                    <li><a class="nav-link scrollto" href="/#clients">Info Mitra</a></li>
+                    <li><a class="nav-link scrollto" href="/#contact">Kontak Kami</a></li>
                     <li><a class="getstarted scrollto" href="{{ route('web.auth.login') }}">Login</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>

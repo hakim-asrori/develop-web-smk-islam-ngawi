@@ -22,8 +22,9 @@
                 </h4>
             </div>
 
-            <form action="{{ route('web.blog.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('web.blog.update', $blog->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
+                @method('put')
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="card">

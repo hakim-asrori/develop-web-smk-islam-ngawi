@@ -72,7 +72,7 @@
 
                             <h3 class="sidebar-title">Cari</h3>
                             <div class="sidebar-item search-form">
-                                <form action="" method="get">
+                                <form action="{{ route('web.blog') }}" method="get">
                                     <input type="text" name="search" value="{{ request('search') }}">
                                     <button type="submit"><i class="bi bi-search"></i></button>
                                 </form>
