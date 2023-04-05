@@ -87,7 +87,7 @@
                         <p>
                             Jalan Raya Ngawi-Jogorogo KM.17 Pehnangka Ds. Gentong, Kec. Peron, Kab. Ngawi <br><br>
                             <strong>Phone:</strong> <a href="tel:+6285776390950">+6285776390950</a><br>
-                            <strong>Email:</strong> info@example.com<br>
+                            <strong>Email:</strong> smf.alislam@gmail.com<br>
                         </p>
 
                     </div>

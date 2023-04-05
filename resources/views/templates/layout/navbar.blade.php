@@ -16,7 +16,7 @@
                     <h6 class="text-overflow m-0">Selamat Datang !</h6>
                 </div>
 
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a href="{{ route('web.profile.index') }}" class="dropdown-item notify-item">
                     <i class="mdi mdi-account-circle me-1"></i>
                     <span>Profil Saya</span>
                 </a>

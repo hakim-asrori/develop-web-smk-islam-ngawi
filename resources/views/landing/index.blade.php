@@ -341,7 +341,7 @@
                                 <div class="info-box">
                                     <i class="bi bi-envelope"></i>
                                     <h3>Email Kami</h3>
-                                    <p>info@example.com<br>contact@example.com</p>
+                                    <p>smf.alislam@gmail.com</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
