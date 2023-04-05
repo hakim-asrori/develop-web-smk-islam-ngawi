@@ -78,28 +78,32 @@
 
                     <div class="col-lg-3" data-aos="fade-up" data-aos-delay="200">
                         <div class="box">
-                            <img src="{{ asset('frontend') }}/img/values-1.png" class="img-fluid" alt="">
+                            <img src="{{ asset('images/pramuka.jpg') }}" class="img-fluid" style="height: 170px"
+                                alt="">
                             <h3>Scout Movement</h3>
                         </div>
                     </div>
 
                     <div class="col-lg-3 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
                         <div class="box">
-                            <img src="{{ asset('frontend') }}/img/values-2.png" class="img-fluid" alt="">
+                            <img src="{{ asset('frontend') }}/img/values-2.png" class="img-fluid" style="height: 170px"
+                                alt="">
                             <h3>Palang Merah Remaja</h3>
                         </div>
                     </div>
 
                     <div class="col-lg-3 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="600">
                         <div class="box">
-                            <img src="{{ asset('frontend') }}/img/values-3.png" class="img-fluid" alt="">
+                            <img src="{{ asset('images/jurnalistik.jpg') }}" class="img-fluid" style="height: 170px"
+                                alt="">
                             <h3>Jurnalistik</h3>
                         </div>
                     </div>
 
                     <div class="col-lg-3 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="600">
                         <div class="box">
-                            <img src="{{ asset('frontend') }}/img/values-3.png" class="img-fluid" alt="">
+                            <img src="{{ asset('images/english_club.jpg') }}" class="img-fluid" style="height: 170px"
+                                alt="">
                             <h3>English Club</h3>
                         </div>
                     </div>
@@ -110,21 +114,24 @@
 
                     <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="box">
-                            <img src="{{ asset('frontend') }}/img/values-1.png" class="img-fluid" alt="">
+                            <img src="{{ asset('images/olahraga.jpg') }}" class="img-fluid" style="height: 170px"
+                                alt="">
                             <h3>Sport</h3>
                         </div>
                     </div>
 
                     <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
                         <div class="box">
-                            <img src="{{ asset('frontend') }}/img/values-2.png" class="img-fluid" alt="">
+                            <img src="{{ asset('images/pencak_silat.jpg') }}" class="img-fluid" style="height: 170px"
+                                alt="">
                             <h3>Bela Diri Keatlitan</h3>
                         </div>
                     </div>
 
                     <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="600">
                         <div class="box">
-                            <img src="{{ asset('frontend') }}/img/values-3.png" class="img-fluid" alt="">
+                            <img src="{{ asset('images/pecinta_alam.jpg') }}" class="img-fluid" style="height: 170px"
+                                alt="">
                             <h3>Pecinta Alam</h3>
                         </div>
                     </div>

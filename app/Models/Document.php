@@ -32,6 +32,11 @@ class Document extends Model
         return $this->morphTo();
     }
 
+    public function blog(): BelongsTo
+    {
+        return $this->belongsTo(Blog::class, 'documentable_id', 'id');
+    }
+
     public function scopeNoThumbnail(Builder $query)
     {
         $query->where("is_thumbnail", 1);

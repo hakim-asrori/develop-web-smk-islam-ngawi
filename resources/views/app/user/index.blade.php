@@ -36,6 +36,15 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>
+                                            @if ($user->role == 'Admin')
+                                                <button class="btn btn-primary btn-sm me-2" id="changeRole"
+                                                    data-url="{{ route('web.user.change.role', $user->id) }}">Hapus dari
+                                                    Admin</button>
+                                            @else
+                                                <button class="btn btn-success btn-sm me-2" id="changeRole"
+                                                    data-url="{{ route('web.user.change.role', $user->id) }}">Jadikan
+                                                    Admin</button>
+                                            @endif
                                             <a href="{{ route('web.user.edit', $user->id) }}"
                                                 class="btn btn-warning btn-sm text-white me-2">Edit</a>
                                             <button class="btn btn-danger btn-sm" id="hapus"
@@ -92,6 +101,46 @@
                             Swal.fire({
                                 title: "Ooops!",
                                 text: "Data gagal dihapus",
+                                icon: "error"
+                            })
+                        }
+                    })
+                }
+            })
+        })
+
+        $("body").on("click", "#changeRole", function() {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "data ini akan diperbaharui!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Batal',
+                confirmButtonText: 'Simpan!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: $(this).data('url'),
+                        type: "post",
+                        data: {
+                            _method: "put",
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                title: "Selamat!",
+                                text: "Data berhasil diperbaharui",
+                                icon: "success"
+                            }).then((result) => {
+                                window.location.reload()
+                            })
+                        },
+                        error: function(response) {
+                            Swal.fire({
+                                title: "Ooops!",
+                                text: "Data gagal diperbaharui",
                                 icon: "error"
                             })
                         }

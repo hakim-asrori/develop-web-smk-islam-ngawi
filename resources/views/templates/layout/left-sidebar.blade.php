@@ -30,13 +30,14 @@
                     <span> Dashboard </span>
                 </a>
             </li>
-
-            <li class="side-nav-item">
-                <a href="{{ route('web.user.index') }}" class="side-nav-link">
-                    <i class="uil-users-alt"></i>
-                    <span> Pengguna </span>
-                </a>
-            </li>
+            @can('admin')
+                <li class="side-nav-item">
+                    <a href="{{ route('web.user.index') }}" class="side-nav-link">
+                        <i class="uil-users-alt"></i>
+                        <span> Pengguna </span>
+                    </a>
+                </li>
+            @endcan
             <li class="side-nav-item">
                 <a href="{{ route('web.blog.index') }}" class="side-nav-link">
                     <i class="uil-package"></i>
@@ -49,12 +50,14 @@
                     <span> Galeri </span>
                 </a>
             </li>
-            <li class="side-nav-item">
-                <a href="{{ route('web.contact.index') }}" class="side-nav-link">
-                    <i class="mdi mdi-contacts"></i>
-                    <span> Kontak </span>
-                </a>
-            </li>
+            @can('admin')
+                <li class="side-nav-item">
+                    <a href="{{ route('web.contact.index') }}" class="side-nav-link">
+                        <i class="mdi mdi-contacts"></i>
+                        <span> Kontak </span>
+                    </a>
+                </li>
+            @endcan
         </ul>
 
         <div class="clearfix"></div>

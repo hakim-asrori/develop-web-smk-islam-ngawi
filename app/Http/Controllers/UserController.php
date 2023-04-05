@@ -137,4 +137,13 @@ class UserController extends Controller
             return $user->delete();
         });
     }
+
+    public function changeRole(User $user)
+    {
+        return DB::transaction(function () use ($user) {
+            return $user->update([
+                'role' => $user->role == "Admin" ? "Owner" : "Admin"
+            ]);
+        });
+    }
 }

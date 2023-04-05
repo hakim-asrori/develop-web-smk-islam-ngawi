@@ -75,32 +75,15 @@
                                     class="bi bi-youtube"></i></a>
                         </div>
                     </div>
-
-                    <div class="col-lg-2 col-6 footer-links">
-                    </div>
-
-                    <div class="col-lg-2 col-6 footer-links">
-                    </div>
-
-                    <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-                        <h4>Kontak Kami</h4>
-                        <p>
-                            Jalan Raya Ngawi-Jogorogo KM.17 Pehnangka Ds. Gentong, Kec. Peron, Kab. Ngawi <br><br>
-                            <strong>Phone:</strong> <a href="tel:+6285776390950">+6285776390950</a><br>
-                            <strong>Email:</strong> smf.alislam@gmail.com<br>
-                        </p>
-
-                    </div>
-
+                </div>
+            </div>
+            <div class="container">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>SMK Al-Islam Ngawi</span></strong>.
                 </div>
             </div>
         </div>
 
-        <div class="container">
-            <div class="copyright">
-                &copy; Copyright <strong><span>SMK Al-Islam Ngawi</span></strong>.
-            </div>
-        </div>
     </footer>
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i

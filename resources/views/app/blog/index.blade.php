@@ -78,6 +78,8 @@
         {!! session('message') !!}
     @endif
     <script>
+        $("#blogTable").dataTable();
+
         $("body").on("click", "input[type='checkbox']", function() {
             $.ajax({
                 url: '{{ url('app/blog/update-status') }}/' + $(this).data('id'),

@@ -26,6 +26,11 @@ class BlogController extends Controller
 
     public function index()
     {
+        $blogs = $this->model->all();
+        if (Auth::user()->role == "Owner") {
+            $blogs = $this->model->where('user_id', Auth::user()->id)->get();
+        }
+
         $data = [
             "title" => "Blog",
             "menus" => collect([
@@ -34,7 +39,7 @@ class BlogController extends Controller
                     "url" => route('web.app.index')
                 ]),
             ]),
-            "blogs" => $this->model->all()
+            "blogs" => $blogs
         ];
 
         return view('app.blog.index', $data);

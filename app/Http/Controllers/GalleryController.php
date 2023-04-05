@@ -3,20 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\GalleriesDataTable;
+use App\Models\Blog;
 use App\Models\Document;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GalleryController extends Controller
 {
-    protected $model;
+    protected $model, $blog;
 
-    public function __construct(Document $model)
+    public function __construct(Document $model, Blog $blog)
     {
         $this->model = $model;
+        $this->blog = $blog;
     }
 
     public function index()
     {
+        $galleries = $this->model->paginate(6);
+        if (Auth::user()->role == "Owner") {
+            $galleries = $this->model->whereHas('blog', function ($query) {
+                $query->where('user_id', Auth::user()->id);
+            })->paginate(6);
+        }
         $data = [
             "title" => "Galeri",
             "menus" => collect([
@@ -25,7 +34,7 @@ class GalleryController extends Controller
                     "url" => route('web.app.index')
                 ]),
             ]),
-            "galleries" => $this->model->paginate(6)
+            "galleries" => $galleries
         ];
 
         return view('app.gallery.index', $data);
