@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\CounterShowBlog;
+use App\Models\Curriculum;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -51,13 +52,13 @@ class LandingController extends Controller
         return view('landing.blog-detail', $data);
     }
 
-    public function gallery()
+    public function curriculums()
     {
         $data = [
-            "galleries" => Document::paginate(9)
+            "curricula" => Curriculum::all()
         ];
 
-        return view('landing.gallery', $data);
+        return view('landing.curriculum', $data);
     }
 
     protected function antiInject($string)

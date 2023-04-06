@@ -12,7 +12,7 @@
                     <li>
                         <a href="{{ url('/') }}">Home</a>
                     </li>
-                    <li>Blog</li>
+                    <li>Berita Terkini</li>
                 </ol>
             </div>
         </section>
@@ -84,7 +84,7 @@
                                 </form>
                             </div>
 
-                            <h3 class="sidebar-title">Post Terbaru</h3>
+                            <h3 class="sidebar-title">Berita</h3>
                             <div class="sidebar-item recent-posts">
                                 @foreach ($newBlogs as $blog)
                                     <div class="post-item clearfix">

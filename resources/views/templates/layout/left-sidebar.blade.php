@@ -1,6 +1,6 @@
 <div class="leftside-menu">
 
-    <a href="index.html" class="logo text-center logo-light">
+    <a href="" class="logo text-center logo-light">
         <span class="logo-lg">
             <img src="{{ asset('images/logo.png') }}" alt="" height="50">
         </span>
@@ -9,7 +9,7 @@
         </span>
     </a>
 
-    <a href="index.html" class="logo text-center logo-dark">
+    <a href="" class="logo text-center logo-dark">
         <span class="logo-lg">
             <img src="{{ asset('images/logo.png') }}" alt="" height="16">
         </span>
@@ -57,6 +57,12 @@
                             </li>
                         </ul>
                     </div>
+                </li>
+                <li class="side-nav-item">
+                    <a href="{{ route('web.curriculum.index') }}" class="side-nav-link">
+                        <i class="uil-book"></i>
+                        <span> Kurikulum Kesiswaan </span>
+                    </a>
                 </li>
             @endcan
             <li class="side-nav-item">

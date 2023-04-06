@@ -154,7 +154,7 @@
 
                     <div class="col-lg-6">
                         <img src="{{ asset('images/lab.jpg') }}" class="img-fluid mb-2" alt="">
-                        <img src="{{ asset('images/lab-2.jpg') }}" class="img-fluid mb-2" alt="">
+
                     </div>
 
                     <div class="col-lg-6 mt-5 mt-lg-0 d-flex">
@@ -234,7 +234,7 @@
                     <div class="row">
 
                         <div class="col-xl-4 text-center" data-aos="fade-right" data-aos-delay="100">
-                            <img src="{{ asset('frontend') }}/img/features-3.png" class="img-fluid p-4" alt="">
+                            <img src="{{ asset('images/lab-2.jpg') }}" class="img-fluid mb-2" alt="">
                         </div>
 
                         <div class="col-xl-8 d-flex content">

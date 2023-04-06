@@ -29,7 +29,7 @@
 
 <body>
 
-    <header id="header" class="header fixed-top">
+    <header id="header" class="header fixed-top pt-2">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
             <a href="/" class="logo d-flex align-items-center">
@@ -42,10 +42,10 @@
                     <li><a class="nav-link scrollto" href="/">Home</a></li>
                     <li><a class="nav-link scrollto" href="/#about">Profil</a></li>
                     <li><a class="nav-link scrollto" href="/#features">Fasilitas</a></li>
-                    <li><a href="/blog">Blog</a></li>
-                    <li><a class="nav-link scrollto" href="/gallery">Galeri</a></li>
-                    <li><a class="nav-link scrollto" href="/#clients">Info Mitra</a></li>
-                    <li><a class="nav-link scrollto" href="/#contact">Kontak Kami</a></li>
+                    <li><a href="/blog">Berita <br> Terkini</a></li>
+                    <li><a class="nav-link scrollto" href="/curriculums">Kurikulum <br> Kesiswaan</a></li>
+                    <li><a class="nav-link scrollto" href="/#clients">Info <br> Mitra</a></li>
+                    <li><a class="nav-link scrollto" href="/#contact">Kontak <br> Kami</a></li>
                     <li><a class="getstarted scrollto" href="{{ route('web.auth.login') }}">Login</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
