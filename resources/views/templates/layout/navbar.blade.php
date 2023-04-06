@@ -9,6 +9,7 @@
                 </span>
                 <span>
                     <span class="account-user-name">{{ auth()->user()->name }}</span>
+                    <span class="account-position text-capitalize">{{ auth()->user()->role }}</span>
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">

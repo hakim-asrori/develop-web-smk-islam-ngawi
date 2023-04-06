@@ -32,10 +32,31 @@
             </li>
             @can('admin')
                 <li class="side-nav-item">
-                    <a href="{{ route('web.user.index') }}" class="side-nav-link">
+                    <a data-bs-toggle="collapse" href="#users" aria-expanded="false" aria-controls="users"
+                        class="side-nav-link">
                         <i class="uil-users-alt"></i>
                         <span> Pengguna </span>
+                        <span class="menu-arrow"></span>
                     </a>
+                    <div class="collapse" id="users">
+                        <ul class="side-nav-second-level">
+                            <li>
+                                <a href="{{ route('web.admin.index') }}">
+                                    <span> Admin </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('web.teacher.index') }}">
+                                    <span> Guru </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('web.student.index') }}">
+                                    <span> Siswa </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
             @endcan
             <li class="side-nav-item">

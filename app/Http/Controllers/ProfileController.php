@@ -7,6 +7,7 @@ use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -44,6 +45,16 @@ class ProfileController extends Controller
 
     public function changePassword(ChangePasswordRequest $changePasswordRequest, User $user)
     {
-        # code...
+        if (!Hash::check($changePasswordRequest->current_password, $user->password)) {
+            return back()->with('messagePassword', "password yang digunakan salah");
+        }
+
+        return DB::transaction(function () use ($user, $changePasswordRequest) {
+            $user->update([
+                'password' => bcrypt($changePasswordRequest->new_password)
+            ]);
+
+            return back()->with('message', "<script>Swal.fire('Selamat!', 'data berhasil disimpan!', 'success');</script>");
+        });
     }
 }

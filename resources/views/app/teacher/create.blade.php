@@ -22,7 +22,7 @@
 
             <div class="row">
                 <div class="col-lg-6">
-                    <form action="{{ route('web.user.store') }}" class="card" method="post">
+                    <form action="{{ route('web.teacher.store') }}" class="card" method="post">
                         @csrf
                         <div class="card-body">
                             <div class="mb-3">
@@ -47,7 +47,7 @@
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between">
-                            <a href="{{ route('web.user.index') }}" class="btn btn-sm btn-danger text-white">Batal</a>
+                            <a href="{{ route('web.teacher.index') }}" class="btn btn-sm btn-danger text-white">Batal</a>
                             <button class="btn btn-sm btn-primary">Simpan</button>
                         </div>
                     </form>

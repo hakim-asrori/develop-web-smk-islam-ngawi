@@ -17,16 +17,18 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-3">
-                    <a href="{{ route('web.user.index') }}" class="card tilebox-one">
-                        <div class="card-body">
-                            <i class='uil uil-users-alt float-end'></i>
-                            <h6 class="text-uppercase mt-0">Jumlah Pengguna</h6>
-                            <h2 class="my-2" id="active-users-count">{{ $users->count() }}</h2>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3">
+                @can('admin')
+                    <div class="col-lg-3">
+                        <a href="{{ route('web.admin.index') }}" class="card tilebox-one">
+                            <div class="card-body">
+                                <i class='uil uil-users-alt float-end'></i>
+                                <h6 class="text-uppercase mt-0">Jumlah Pengguna</h6>
+                                <h2 class="my-2" id="active-users-count">{{ $users->count() }}</h2>
+                            </div>
+                        </a>
+                    </div>
+                @endcan
+                <div class="@can('admin') col-lg-3 @endcan @can('guru') col-lg-6 @endcan">
                     <a href="{{ route('web.blog.index') }}" class="card tilebox-one">
                         <div class="card-body">
                             <i class='uil uil-package float-end'></i>
@@ -35,7 +37,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-3">
+                <div class="@can('admin') col-lg-3 @endcan @can('guru') col-lg-6 @endcan">
                     <a href="{{ route('web.gallery.index') }}" class="card tilebox-one">
                         <div class="card-body">
                             <i class='uil uil-comment-alt-image float-end'></i>
@@ -44,15 +46,17 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-3">
-                    <a href="{{ route('web.contact.index') }}" class="card tilebox-one">
-                        <div class="card-body">
-                            <i class='mdi mdi-contacts float-end'></i>
-                            <h6 class="text-uppercase mt-0">Jumlah Kontak</h6>
-                            <h2 class="my-2" id="active-users-count">{{ $contacts->count() }}</h2>
-                        </div>
-                    </a>
-                </div>
+                @can('admin')
+                    <div class="col-lg-3">
+                        <a href="{{ route('web.contact.index') }}" class="card tilebox-one">
+                            <div class="card-body">
+                                <i class='mdi mdi-contacts float-end'></i>
+                                <h6 class="text-uppercase mt-0">Jumlah Kontak</h6>
+                                <h2 class="my-2" id="active-users-count">{{ $contacts->count() }}</h2>
+                            </div>
+                        </a>
+                    </div>
+                @endcan
             </div>
         </div>
     </div>

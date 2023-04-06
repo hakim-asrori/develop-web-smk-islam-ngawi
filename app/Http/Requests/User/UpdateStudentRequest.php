@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\User;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class LoginRequest extends FormRequest
+class UpdateStudentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,9 +23,15 @@ class LoginRequest extends FormRequest
      */
     public function rules(): array
     {
+        $user = User::findOrFail(request()->segment(3));
+
         return [
-            'email' => 'required',
-            'password' => 'required'
+            'name' => 'required',
+            'nis' => [
+                'required',
+                'numeric',
+                Rule::unique('users')->ignore($user)
+            ]
         ];
     }
 }

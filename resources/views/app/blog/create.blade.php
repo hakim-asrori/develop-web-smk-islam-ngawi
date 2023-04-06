@@ -119,7 +119,7 @@
                     ["direction", {
                         align: []
                     }],
-                    ["link", "image", "video"],
+                    ["link", "video"],
                     ["clean"]
                 ]
             }

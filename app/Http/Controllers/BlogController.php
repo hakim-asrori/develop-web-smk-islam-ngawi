@@ -27,7 +27,7 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = $this->model->all();
-        if (Auth::user()->role == "Owner") {
+        if (Auth::user()->role == Auth::user()::GURU) {
             $blogs = $this->model->where('user_id', Auth::user()->id)->get();
         }
 
@@ -56,7 +56,7 @@ class BlogController extends Controller
                 ]),
                 collect([
                     "title" => "Blog",
-                    "url" => route('web.user.index')
+                    "url" => route('web.blog.index')
                 ]),
             ]),
         ];
@@ -108,7 +108,7 @@ class BlogController extends Controller
                 ]),
                 collect([
                     "title" => "Blog",
-                    "url" => route('web.user.index')
+                    "url" => route('web.blog.index')
                 ]),
             ]),
             "blog" => $blog

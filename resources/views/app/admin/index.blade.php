@@ -12,7 +12,7 @@
                         <li class="breadcrumb-item active">{{ $title }}</li>
                     </ol>
                 </div>
-                <h4 class="page-title">{{ $title }} &nbsp;&nbsp; <a href="{{ route('web.user.create') }}"
+                <h4 class="page-title">{{ $title }} &nbsp;&nbsp; <a href="{{ route('web.admin.create') }}"
                         class="btn btn-primary btn-sm">Tambah</a>
                 </h4>
             </div>
@@ -36,19 +36,10 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>
-                                            @if ($user->role == 'Admin')
-                                                <button class="btn btn-primary btn-sm me-2" id="changeRole"
-                                                    data-url="{{ route('web.user.change.role', $user->id) }}">Hapus dari
-                                                    Admin</button>
-                                            @else
-                                                <button class="btn btn-success btn-sm me-2" id="changeRole"
-                                                    data-url="{{ route('web.user.change.role', $user->id) }}">Jadikan
-                                                    Admin</button>
-                                            @endif
-                                            <a href="{{ route('web.user.edit', $user->id) }}"
+                                            <a href="{{ route('web.admin.edit', $user->id) }}"
                                                 class="btn btn-warning btn-sm text-white me-2">Edit</a>
                                             <button class="btn btn-danger btn-sm" id="hapus"
-                                                data-url="{{ route('web.user.destroy', $user->id) }}">Hapus</button>
+                                                data-url="{{ route('web.admin.destroy', $user->id) }}">Hapus</button>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class TeacherController extends Controller
 {
     protected $model;
 
@@ -26,17 +26,17 @@ class UserController extends Controller
     public function index()
     {
         $data = [
-            "title" => "Pengguna",
+            "title" => "Guru",
             "menus" => collect([
                 collect([
                     "title" => "Dashboard",
                     "url" => route('web.app.index')
                 ]),
             ]),
-            "users" => $this->model->all()
+            "users" => $this->model->where('role', $this->model::GURU)->get()
         ];
 
-        return view('app.user.index', $data);
+        return view('app.teacher.index', $data);
     }
 
     /**
@@ -45,20 +45,20 @@ class UserController extends Controller
     public function create()
     {
         $data = [
-            "title" => "Tambah Pengguna",
+            "title" => "Tambah Guru",
             "menus" => collect([
                 collect([
                     "title" => "Dashboard",
                     "url" => route('web.app.index')
                 ]),
                 collect([
-                    "title" => "Pengguna",
-                    "url" => route('web.user.index')
+                    "title" => "Guru",
+                    "url" => route('web.teacher.index')
                 ]),
             ]),
         ];
 
-        return view('app.user.create', $data);
+        return view('app.teacher.create', $data);
     }
 
     /**
@@ -70,11 +70,12 @@ class UserController extends Controller
             $createUserRequest->merge([
                 'password' => Hash::make('password'),
                 'email_verified_at' => Carbon::now(),
-                'remember_token' => Str::random(10)
+                'remember_token' => Str::random(10),
+                'role' => $this->model::GURU
             ]);
             $this->model->create($createUserRequest->all());
 
-            return redirect(route('web.user.index'))->with('message', "<script>Swal.fire('Selamat!', 'data berhasil disimpan!', 'success');</script>");
+            return redirect(route('web.teacher.index'))->with('message', "<script>Swal.fire('Selamat!', 'data berhasil disimpan!', 'success');</script>");
         });
     }
 
@@ -89,31 +90,33 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit($id)
     {
         $data = [
-            "title" => "Edit Pengguna",
+            "title" => "Edit Guru",
             "menus" => collect([
                 collect([
                     "title" => "Dashboard",
                     "url" => route('web.app.index')
                 ]),
                 collect([
-                    "title" => "Pengguna",
-                    "url" => route('web.user.index')
+                    "title" => "Guru",
+                    "url" => route('web.teacher.index')
                 ]),
             ]),
-            "user" => $user
+            "user" => $this->model->findOrFail($id)
         ];
 
-        return view('app.user.edit', $data);
+        return view('app.teacher.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $updateUserRequest, User $user)
+    public function update(UpdateUserRequest $updateUserRequest, $id)
     {
+        $user = $this->model->findOrFail($id);
+
         return DB::transaction(function () use ($updateUserRequest, $user) {
             $updateUserRequest->merge([
                 'password' => Hash::make('password'),
@@ -122,7 +125,7 @@ class UserController extends Controller
             ]);
             $user->update($updateUserRequest->all());
 
-            return redirect(route('web.user.index'))->with('message', "<script>Swal.fire('Selamat!', 'data berhasil disimpan!', 'success');</script>");
+            return redirect(route('web.teacher.index'))->with('message', "<script>Swal.fire('Selamat!', 'data berhasil disimpan!', 'success');</script>");
         });
     }
 
@@ -135,15 +138,6 @@ class UserController extends Controller
 
         return DB::transaction(function () use ($user) {
             return $user->delete();
-        });
-    }
-
-    public function changeRole(User $user)
-    {
-        return DB::transaction(function () use ($user) {
-            return $user->update([
-                'role' => $user->role == "Admin" ? "Owner" : "Admin"
-            ]);
         });
     }
 }

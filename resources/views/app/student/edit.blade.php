@@ -22,7 +22,7 @@
 
             <div class="row">
                 <div class="col-lg-6">
-                    <form action="{{ route('web.user.update', ['user' => $user->id]) }}" class="card" method="post">
+                    <form action="{{ route('web.student.update', $user->id) }}" class="card" method="post">
                         @csrf
                         @method('put')
                         <div class="card-body">
@@ -38,11 +38,11 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="email">Email</label>
-                                <input type="text" id="email" name="email"
-                                    value="{{ old('email') ? old('email') : $user->email }}"
-                                    class="form-control @error('email') is-invalid @enderror">
-                                @error('email')
+                                <label for="nis">NIS</label>
+                                <input type="text" id="nis" name="nis"
+                                    value="{{ old('nis') ? old('nis') : $user->nis }}"
+                                    class="form-control @error('nis') is-invalid @enderror">
+                                @error('nis')
                                     <span class="invalid-feedback" role="alert">
                                         {{ $message }}
                                     </span>
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between">
-                            <a href="{{ route('web.user.index') }}" class="btn btn-sm btn-danger text-white">Batal</a>
+                            <a href="{{ route('web.student.index') }}" class="btn btn-sm btn-danger text-white">Batal</a>
                             <button class="btn btn-sm btn-primary">Simpan</button>
                         </div>
                     </form>

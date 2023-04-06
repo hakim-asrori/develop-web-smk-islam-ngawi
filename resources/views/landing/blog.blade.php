@@ -43,9 +43,15 @@
                                     <div class="entry-meta">
                                         <ul>
                                             <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                                    href="#">{{ $blog->user->name }}</a></li>
+                                                    href="#"
+                                                    style="cursor: default">{{ $blog->user ? $blog->user->name : 'User Remover' }}</a>
+                                            </li>
                                             <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
-                                                    href="#"><time
+                                                    href="#" style="cursor: default"><time
+                                                        datetime="{{ $blog->created_at }}">{{ Carbon::createFromFormat('Y-m-d H:i:s', $blog->created_at)->isoFormat('dddd, D MMMM Y') }}</time></a>
+                                            </li>
+                                            <li class="d-flex align-items-center"><i class="bi bi-eye"></i> <a
+                                                    href="#" style="cursor: default"><time
                                                         datetime="{{ $blog->created_at }}">{{ Carbon::createFromFormat('Y-m-d H:i:s', $blog->created_at)->isoFormat('dddd, D MMMM Y') }}</time></a>
                                             </li>
                                         </ul>

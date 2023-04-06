@@ -29,7 +29,7 @@ class ChangeRoleAdmin extends Command
         $user = User::where('email', 'admin@mailinator.com')->first();
         if ($user) {
             $user->update([
-                'role' => 'Admin'
+                'role' => User::ADMIN
             ]);
             $this->info("pembaharuan data berhasil...!");
         } else {

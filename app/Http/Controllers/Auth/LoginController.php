@@ -25,7 +25,7 @@ class LoginController extends Controller
 
     public function login(LoginRequest $loginRequest)
     {
-        $user = $this->user->where('email', $loginRequest->email)->first();
+        $user = $this->user->where('email', $loginRequest->email)->orWhere('nis', $loginRequest->email)->first();
 
         if (!$user) {
             return back()->with('message', "<script>Swal.fire('Ooops!', 'akun tidak terdaftar!', 'error');</script>")->withInput();
@@ -35,12 +35,17 @@ class LoginController extends Controller
             return back()->with('message', "<script>Swal.fire('Ooops!', 'akun tidak terdaftar!', 'error');</script>")->withInput();
         }
 
-        if (Auth::attempt($loginRequest->validated())) {
-            $loginRequest->session()->regenerate();
+        $loginRequest->session()->regenerate();
 
+        if (Auth::attempt($loginRequest->validated())) {
             return redirect()->intended('app');
         }
 
-        return back()->with('message', "<script>Swal.fire('Ooops!', 'akun tidak terdaftar!', 'error');</script>")->withInput();
+        if (Auth::attempt([
+            'nis' => $user->nis,
+            'password' => $loginRequest->password
+        ])) {
+            return redirect()->intended('app');
+        }
     }
 }

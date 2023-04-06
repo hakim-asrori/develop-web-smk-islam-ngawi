@@ -62,6 +62,14 @@
                             @csrf
                             @method('put')
                             <div class="card-body">
+                                @if (session('messagePassword'))
+                                    <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show"
+                                        role="alert">
+                                        {{ session('messagePassword') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @endif
                                 <div class="mb-3">
                                     <label>Password yang digunakan</label>
                                     <input type="password"

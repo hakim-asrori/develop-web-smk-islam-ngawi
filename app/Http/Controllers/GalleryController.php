@@ -21,7 +21,7 @@ class GalleryController extends Controller
     public function index()
     {
         $galleries = $this->model->paginate(6);
-        if (Auth::user()->role == "Owner") {
+        if (Auth::user()->role == Auth::user()::GURU) {
             $galleries = $this->model->whereHas('blog', function ($query) {
                 $query->where('user_id', Auth::user()->id);
             })->paginate(6);

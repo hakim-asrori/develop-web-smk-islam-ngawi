@@ -21,9 +21,9 @@
                     <form action="{{ route('web.auth.login.process') }}" method="post">
                         @csrf
                         <div class="mb-3">
-                            <label for="emailaddress" class="form-label">Alamat Email</label>
-                            <input class="form-control @error('email') is-invalid @enderror" type="email" name="email"
-                                id="emailaddress" placeholder="Masukan email anda">
+                            <label for="emailaddress" class="form-label">Alamat Email atau NIS</label>
+                            <input class="form-control @error('email') is-invalid @enderror" type="text" name="email"
+                                id="emailaddress" placeholder="Masukan email atau nis anda">
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     {{ $message }}

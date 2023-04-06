@@ -153,7 +153,8 @@
                 <div class="row">
 
                     <div class="col-lg-6">
-                        <img src="{{ asset('frontend') }}/img/features.png" class="img-fluid" alt="">
+                        <img src="{{ asset('images/lab.jpg') }}" class="img-fluid mb-2" alt="">
+                        <img src="{{ asset('images/lab-2.jpg') }}" class="img-fluid mb-2" alt="">
                     </div>
 
                     <div class="col-lg-6 mt-5 mt-lg-0 d-flex">
