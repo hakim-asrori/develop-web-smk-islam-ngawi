@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\CounterShowBlog;
 use App\Models\Document;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LandingController extends Controller
 {
@@ -30,6 +32,12 @@ class LandingController extends Controller
     public function blogDetail($slug)
     {
         $blog = Blog::where('slug', $slug)->first();
+
+        DB::transaction(function () use ($blog) {
+            return CounterShowBlog::create([
+                'blog_id' => $blog->id
+            ]);
+        });
 
         $data = [
             "blog" => $blog,

@@ -15,8 +15,9 @@
                         <li class="breadcrumb-item active">{{ $title }}</li>
                     </ol>
                 </div>
-                <h4 class="page-title">{{ $title }} &nbsp;&nbsp; <a href="{{ route('web.blog.create') }}"
-                        class="btn btn-primary btn-sm">Tambah</a>
+                <h4 class="page-title">{{ $title }} &nbsp;&nbsp; @canany(['admin', 'guru'])
+                        <a href="{{ route('web.blog.create') }}" class="btn btn-primary btn-sm">Tambah</a>
+                    @endcanany
                 </h4>
             </div>
 
@@ -29,39 +30,50 @@
                                     <th>No</th>
                                     <th>Judul</th>
                                     <th>Penulis</th>
-                                    <th>Status</th>
+                                    @canany(['admin', 'guru'])
+                                        <th>Status</th>
+                                    @endcanany
+                                    <th>Jumlah Pengunjung</th>
                                     <th>Tanggal Dibuat</th>
-                                    <th>Aksi</th>
+                                    @canany(['admin', 'guru'])
+                                        <th>Aksi</th>
+                                    @endcanany
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($blogs as $blog)
-                                    <tr>
+                                    <tr
+                                        @can('murid')style="cursor: pointer" onclick="redirectTo('/blog/{{ $blog->slug }}')" @endcan>
                                         <th>{{ $loop->iteration }}</th>
                                         <td>{{ $blog->title }}</td>
-                                        <td>{{ $blog->user->name }}</td>
-                                        <td>
-                                            @if ($blog->status)
-                                                <input type="checkbox" id="status-{{ $blog->id }}"
-                                                    data-id="{{ $blog->id }}" checked data-switch="bool" /><label
-                                                    for="status-{{ $blog->id }}" data-on-label="On"
-                                                    data-off-label="Off"></label>
-                                            @else
-                                                <input type="checkbox" id="status-{{ $blog->id }}"
-                                                    data-id="{{ $blog->id }}" data-switch="bool" /><label
-                                                    for="status-{{ $blog->id }}" data-on-label="On"
-                                                    data-off-label="Off"></label>
-                                            @endif
-                                        </td>
+                                        <td>{{ $blog->user ? $blog->user->name : 'User Remover' }}</td>
+                                        @canany(['admin', 'guru'])
+                                            <td>
+                                                @if ($blog->status)
+                                                    <input type="checkbox" id="status-{{ $blog->id }}"
+                                                        data-id="{{ $blog->id }}" checked data-switch="bool" /><label
+                                                        for="status-{{ $blog->id }}" data-on-label="On"
+                                                        data-off-label="Off"></label>
+                                                @else
+                                                    <input type="checkbox" id="status-{{ $blog->id }}"
+                                                        data-id="{{ $blog->id }}" data-switch="bool" /><label
+                                                        for="status-{{ $blog->id }}" data-on-label="On"
+                                                        data-off-label="Off"></label>
+                                                @endif
+                                            </td>
+                                        @endcanany
+                                        <td>{{ $blog->counters->count() }} Pengunjung</td>
                                         <td>
                                             {{ Carbon::createFromFormat('Y-m-d H:i:s', $blog->created_at)->isoFormat('D MMMM Y') }}
                                         </td>
-                                        <td>
-                                            <a href="{{ route('web.blog.edit', $blog->id) }}"
-                                                class="btn btn-warning btn-sm text-white me-2">Edit</a>
-                                            <button class="btn btn-danger btn-sm" id="hapus"
-                                                data-url="{{ route('web.blog.destroy', $blog->id) }}">Hapus</button>
-                                        </td>
+                                        @canany(['admin', 'guru'])
+                                            <td>
+                                                <a href="{{ route('web.blog.edit', $blog->id) }}"
+                                                    class="btn btn-warning btn-sm text-white me-2">Edit</a>
+                                                <button class="btn btn-danger btn-sm" id="hapus"
+                                                    data-url="{{ route('web.blog.destroy', $blog->id) }}">Hapus</button>
+                                            </td>
+                                        @endcanany
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -144,5 +156,9 @@
                 }
             })
         })
+
+        function redirectTo(params) {
+            window.open('{{ url('') }}' + params, "_blank")
+        }
     </script>
 @endpush

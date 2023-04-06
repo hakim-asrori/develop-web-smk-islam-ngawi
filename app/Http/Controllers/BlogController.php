@@ -154,6 +154,10 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
         return DB::transaction(function () use ($blog) {
+            if ($blog->counters) {
+                $blog->counters()->delete();
+            }
+
             if ($blog->documents) {
                 foreach ($blog->documents as $document) {
                     Storage::delete($document->document_path);

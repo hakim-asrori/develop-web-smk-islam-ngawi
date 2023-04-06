@@ -51,8 +51,8 @@
                                                         datetime="{{ $blog->created_at }}">{{ Carbon::createFromFormat('Y-m-d H:i:s', $blog->created_at)->isoFormat('dddd, D MMMM Y') }}</time></a>
                                             </li>
                                             <li class="d-flex align-items-center"><i class="bi bi-eye"></i> <a
-                                                    href="#" style="cursor: default"><time
-                                                        datetime="{{ $blog->created_at }}">{{ Carbon::createFromFormat('Y-m-d H:i:s', $blog->created_at)->isoFormat('dddd, D MMMM Y') }}</time></a>
+                                                    href="#" style="cursor: default">{{ $blog->counters->count() }}
+                                                    Pengunjung</a>
                                             </li>
                                         </ul>
                                     </div>
