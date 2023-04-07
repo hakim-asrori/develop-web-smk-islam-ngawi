@@ -68,7 +68,7 @@
             <li class="side-nav-item">
                 <a href="{{ route('web.blog.index') }}" class="side-nav-link">
                     <i class="uil-package"></i>
-                    <span> Blog </span>
+                    <span> Berita </span>
                 </a>
             </li>
             <li class="side-nav-item">

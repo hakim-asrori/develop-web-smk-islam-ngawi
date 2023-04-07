@@ -12,8 +12,10 @@
                         <li class="breadcrumb-item active">{{ $title }}</li>
                     </ol>
                 </div>
-                <h4 class="page-title">{{ $title }} &nbsp;&nbsp; <a href="#" data-bs-toggle="modal"
-                        data-bs-target="#standard-modal" class="btn btn-primary btn-sm">Upload Dokumen</a>
+                <h4 class="page-title">{{ $title }} &nbsp;&nbsp; <br class="d-sm-none d-block"> <a href="#"
+                        data-bs-toggle="modal" data-bs-target="#standard-modal"
+                        class="btn btn-primary btn-sm mb-sm-0 mb-3">Upload
+                        Dokumen</a>
                 </h4>
             </div>
 

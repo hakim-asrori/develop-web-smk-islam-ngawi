@@ -32,7 +32,7 @@ class BlogController extends Controller
         }
 
         $data = [
-            "title" => "Blog",
+            "title" => "Berita",
             "menus" => collect([
                 collect([
                     "title" => "Dashboard",
@@ -48,14 +48,14 @@ class BlogController extends Controller
     public function create()
     {
         $data = [
-            "title" => "Tambah Blog",
+            "title" => "Tambah Berita",
             "menus" => collect([
                 collect([
                     "title" => "Dashboard",
                     "url" => route('web.app.index')
                 ]),
                 collect([
-                    "title" => "Blog",
+                    "title" => "Berita",
                     "url" => route('web.blog.index')
                 ]),
             ]),
@@ -100,14 +100,14 @@ class BlogController extends Controller
     public function edit(Blog $blog)
     {
         $data = [
-            "title" => "Tambah Blog",
+            "title" => "Tambah Berita",
             "menus" => collect([
                 collect([
                     "title" => "Dashboard",
                     "url" => route('web.app.index')
                 ]),
                 collect([
-                    "title" => "Blog",
+                    "title" => "Berita",
                     "url" => route('web.blog.index')
                 ]),
             ]),

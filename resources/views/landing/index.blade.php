@@ -27,7 +27,36 @@
 
     <main id="main">
 
-        <section id="about" class="about">
+        <section id="about" class="about footer">
+            <div class="footer-newsletter pb-0">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12 text-center">
+                            <header class="section-header pb-0">
+                                <p>Profil Kami</p>
+                            </header>
+                            <p>SMK Farmasi Al-Islam Pehnangka merupakan suatu lembaga pendidikan dibawah naungan yayasan
+                                Al-Islam pehnangka. sekolah ini awalnya merupakan sebuah lembaga pendidikan Madrasah Aliyah
+                                yang berdiri hanya sekitar 10 tahun lebih tepatnya sekitar tahun 1967-1976. <br><br>
+                                Madrasah Aliyah Pehnangka ini tidak beroprasi lagi dikarenakan kurangnya murid yang ada.
+                                Sehingga kemudian, pada tahun 2013 tercetuslah ide untuk kembali mendirikan Madrasah Aliyah
+                                ini. dan pada tahun 2014 akhirnya tercetus ide pendirian SMK Farmasi yang di organisir oleh
+                                satu tim perintis. Tim ini beranggotakan Bapak Ahyana Fitrian, Bapak DIdik Hariri, dan Bapak
+                                Yusron Habibi (Penanggung Jawab Administrasi Kala itu). Tim ini lah yang merancang dan juga
+                                mengurus perizinan berdirinya lembaga SMK Farmasi Al-Islam. <br><br>
+                                Pada tahun 2015 terbitlah hasil dari perencanaan dan perizinan yang telah diupayakan
+                                sebelumnya. Pada tahun ini diangkat pula Bapak Apri Sulistio sebagai kepala sekolah pertama
+                                yang menjabat hingga tahun 2021. Adapun kepala sekolah kedua yaitu Bapak Teguh Widodo yang
+                                menjabat dari tahun 2021-sekarang. <br><br>
+                                Dikarenakan SMK Farmasi Al-Islam ini merupakan lembaga dibawah naungan Yayasan Al-Islam
+                                Pehnangka, maka latar berlakang sekolah ini menjadi sekolah yang berasaskan nilai-nilai
+                                Islam hingga mewujudkan generasi yang berkarakter Islami. Adapun jumlah tenaga pendidik di
+                                SMK Farmasi Al-Islam pada tahun 2023 tercatat sebanyak 15 orang.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="container" data-aos="fade-up">
                 <div class="row gx-0">
