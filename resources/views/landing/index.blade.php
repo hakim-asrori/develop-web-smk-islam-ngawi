@@ -385,7 +385,7 @@
                                 <div class="info-box">
                                     <i class="bi bi-clock"></i>
                                     <h3>Jam Buka</h3>
-                                    <p>Senin - Jum'at<br>08.00 Pagi - 16:00 Sore</p>
+                                    <p>Senin - Sabtu<br>07.00 Pagi - 14:00 Sore</p>
                                 </div>
                             </div>
                         </div>
