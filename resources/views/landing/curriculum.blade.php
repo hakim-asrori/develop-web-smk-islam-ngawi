@@ -36,7 +36,7 @@
                                         @foreach ($curricula as $curriculum)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td><a href="{{ route('web.curriculum.show', $curriculum->id) }}"
+                                                <td><a href="{{ route('web.curriculum.download', $curriculum->id) }}"
                                                         target="_blank">{{ $curriculum->title }}</a></td>
                                             </tr>
                                         @endforeach

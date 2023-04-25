@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 includeRouteFiles(__DIR__ . "/app");
 
+Route::get('curriculum/{id}/download', [CurriculumController::class, 'show'])->name('web.curriculum.download');
+
 Route::middleware(['auth'])->prefix('app')->group(function () {
     Route::get('/', AppController::class)->name('web.app.index');
 
